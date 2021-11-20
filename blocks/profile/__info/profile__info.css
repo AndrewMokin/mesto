@@ -1,6 +1,6 @@
 .profile__info {
   display: flex;
-  align-items: center ;
+  align-items: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

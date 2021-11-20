@@ -1,5 +1,5 @@
 .profile__editing {
-  margin: 0 0 20px 18px ;
+  margin: 0 0 20px 18px;
   transition: opacity 0.2s linear;
   align-self: flex-end;
 }
@@ -10,6 +10,6 @@
 
 @media screen and (max-width: 900px) {
   .profile__editing {
-    margin: 0 0 16px 10px ;
+    margin: 0 0 16px 10px;
   }
 }
