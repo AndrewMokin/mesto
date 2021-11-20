@@ -1,0 +1,9 @@
+.profile__name-editing {
+  display: flex;
+}
+
+@media screen and (max-width: 900px) {
+  .profile__name-editing {
+    margin-top: 22px;
+  }
+}

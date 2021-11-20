@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="4 Sprint">
+  <meta name="keywords" content="html, css, JS">
+  <meta name="author" content="Andrew Mokin">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header__layout-logo">
+        <a href="#"><img src="./images/mesto.SVG" class="header__logo" alt="логотип"></a>
+      </div>
+      <div class="header__line"></div>
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__info">
+          <img src="./images/zhak_kusto.png" alt="изображение портфолио" class="profile__image">
+          <div>
+            <div class="profile__name-editing">
+              <h2 class="profile__name">Жак-Ив Кусто</h2>
+              <a href="#" class="profile__editing"><img src="./images/editing.svg" alt="редактирование профиля" class="profile__editing-icon"></a>
+            </div>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+        </div>
+        <div class="profile__add-element"></div>
+      </section>
+      <section class="places" aria-label="статьи с описанием мест">
+        <article class="place">
+          <img src="./images/moscow.jpg" alt="Москва" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Огни ночной Москвы</h2>
+            <img src="./images/heart.svg" alt="сдесь вы можете поставить лайк картинке" class="place__like">
+          </div>
+        </article>
+        <article class="place">
+          <img src="./images/bangkok.jpg" alt="ночной Бангкок" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Бангкок</h2>
+            <img src="./images/heart.svg" alt="сдесь вы можете поставить лайк картинке" class="place__like">
+          </div>
+        </article>
+        <article class="place">
+          <img src="./images/dubai.jpg" alt="Дубаи" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Из России в Дубаи</h2>
+            <img src="./images/heart.svg" alt="сдесь вы можете поставить лайк картинке" class="place__like">
+          </div>
+        </article>
+        <article class="place">
+          <img src="./images/hongkong.jpg" alt="Гонконг" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Гонконг, как Кин-Конг</h2>
+            <img src="./images/heart.svg" alt="сдесь вы можете поставить лайк картинке" class="place__like">
+          </div>
+        </article>
+        <article class="place">
+          <img src="./images/london.jpg" alt="Лондон" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Лондон, тот самый</h2>
+            <img src="./images/heart.svg" alt="сдесь вы можете поставить лайк картинке" class="place__like">
+          </div>
+        </article>
+        <article class="place">
+          <img src="./images/san_francisco.jpg" alt="Сан-Франциско" class="place__image">
+          <div class="place__info">
+            <h2 class="place__title">Сан-Франциско - Диско  </h2>
+            <img src="./images/heart.svg" alt="сдесь вы можете поставить лайк картинке" class="place__like">
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&COPY; 2020 Mesto Russia</p>
+    </footer>
+  </div>
+  <form class="popup" name="form">
+    <div class="popup__content">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="popup__close">
+        <path d="M32 28.8L19.2 16L32 3.2L28.8 0L16 12.8L3.2 0L0 3.2L12.8 16L0 28.8L3.2 32L16 19.2L28.8 32L32 28.8Z" fill="white"/>
+      </svg>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <fieldset class="popup__profile-info">
+        <input type="text" value="Жак-Ив Кусто" class="popup__text-form popup__text-form_name">
+        <input type="text" value="Исследователь океана" class="popup__text-form popup__text-form_job">
+      </fieldset>
+      <button type="submit" class="popup__button">Сохранить</button>
+    </div>
+  </form>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
