@@ -4,12 +4,14 @@
   row-gap: 20px;
   column-gap: 17px;
   justify-content: center;
-  margin-top: 47px;
+  margin-top: 51px;
+  padding: 0;
 }
 
 @media screen and (max-width: 900px) {
   .places {
     grid-template-columns: repeat(2, 282px);
+    margin-top: 36px;
   }
 }
 
