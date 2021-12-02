@@ -29,28 +29,24 @@ const getTemplateEl = document.querySelector('.template');
 const listContainerEl = document.querySelector('.places')
 
 function render() {
-  const html = initialCards.map(getItemHTML).join('')
-  listContainerEl.insertAdjacentHTML("afterbegin", html);
+  const html = initialCards.map((item) => {
+    return getItem(item);
+  })
+  listContainerEl.append(...html);
 }
 
-function getItemHTML(item) {
-  return `<li class="place">
-  <img src=${item.link} alt="Москва" class="place__image">
-  <div class="place__info">
-    <h2 class="place__title">${item.name}</h2>
-    <button type="submit" class="place__like"></button>
-  </div>
-</li>`
+
+function getItem(item) {
+  const newItem = getTemplateEl.content.cloneNode(true);
+  const src = newItem.querySelector('.place__image');
+  const name = newItem.querySelector('.place__title');
+  src.src = item.link;
+  name.textContent = item.name;
+
+  return newItem;
 }
 
 render();
-
-// function getItem(item) {
-//   const newItem = getTemplateEl.content.cloneNode(true);
-//   const src = newItem.querySelector('.place__image');
-//   src.classList.add('item.link')
-//   return newItem;
-// }
 
 function openPopup() {
   popup.classList.add('popup_opened');
