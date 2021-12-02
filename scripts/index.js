@@ -1,10 +1,15 @@
+const initialCards = [
+  name:
+  link: ''
+]
+
 
 const openProfile = document.querySelector('.profile__editing');
 const popup = document.querySelector('.popup');
 const popupCloseButton = popup.querySelector('.popup__close');
 const saveProfile = popup.querySelector('.popup__button')
 const nameInput = popup.querySelector('.popup__text-form_name');
-let jobInput = popup.querySelector('.popup__text-form_job');
+const jobInput = popup.querySelector('.popup__text-form_job');
 let namePage = document.querySelector('.profile__name');
 let jobPage = document.querySelector('.profile__description');
 
@@ -26,3 +31,4 @@ function formSubmitHandler (evt) {
 popup.addEventListener('submit',formSubmitHandler);
 openProfile.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
+
