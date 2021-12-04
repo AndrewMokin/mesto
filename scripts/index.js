@@ -11,9 +11,7 @@ const initialCards = [
   link: './images/london.jpg'},
   {name: 'Сан-Франциско - Диско',
   link: './images/san_francisco.jpg'},
-
 ]
-
 
 const openProfile = document.querySelector('.profile__editing');
 const popup = document.querySelector('.popup');
@@ -43,10 +41,16 @@ function getItem(item) {
   src.src = item.link;
   name.textContent = item.name;
 
+  newItem.querySelector('.place__like').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('place__like_active');
+  });
+
   return newItem;
 }
 
 render();
+
+
 
 function openPopup() {
   popup.classList.add('popup_opened');
