@@ -38,11 +38,17 @@ function getItem(item) {
   const newItem = getTemplateEl.content.cloneNode(true);
   const src = newItem.querySelector('.place__image');
   const name = newItem.querySelector('.place__title');
+  const deleteButton = newItem.querySelector('.place__delete');
   src.src = item.link;
   name.textContent = item.name;
 
   newItem.querySelector('.place__like').addEventListener('click', function(evt) {
     evt.target.classList.toggle('place__like_active');
+  });
+
+  deleteButton.addEventListener('click', function(){
+    const placeItem = deleteButton.closest('.place');
+    placeItem.remove();
   });
 
   return newItem;
