@@ -6,12 +6,16 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  min-width: 380px;
 }
+
 
 @media screen and (max-width: 900px) {
   .profile__description {
     margin: 0 auto;
     font-size: 14px;
     line-height: 17px;
+    min-width: 220px;
+    text-align: center;
   }
 }

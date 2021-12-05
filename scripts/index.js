@@ -56,10 +56,12 @@ function getItem(item) { // функция добавления карточек
 
   newItem.querySelector('.place__like').addEventListener('click', function(evt) { // лайк карточкам
     evt.target.classList.toggle('place__like_active');
+    evt.stopPropagation();
   });
 
-  deleteButton.addEventListener('click', function(){ // удаляем карточки
+  deleteButton.addEventListener('click', function(evt){ // удаляем карточки
     const placeItem = deleteButton.closest('.place');
+    evt.stopPropagation();
     placeItem.remove();
   });
 
