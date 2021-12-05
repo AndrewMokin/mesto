@@ -8,7 +8,7 @@
   <meta name="author" content="Andrew Mokin">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
-  <script src="./scripts/index.js" defer></script>
+  <!-- <script src="./scripts/index.js" defer></script> -->
 </head>
 <body>
   <div class="page">
@@ -28,52 +28,8 @@
         <!-- </div> -->
         <button type="button" class="profile__add-element"></button>
       </section>
-      <ul class="places" aria-label="статьи с описанием мест">
-        <!-- <li class="place">
-          <img src="./images/moscow.jpg" alt="Москва" class="place__image">
-          <div class="place__info">
-            <h2 class="place__title">Огни ночной Москвы</h2>
-            <button type="submit" class="place__like"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img src="./images/bangkok.jpg" alt="ночной Бангкок" class="place__image">
-          <div class="place__info">
-            <h2 class="place__title">Бангкок</h2>
-            <button type="submit" class="place__like"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img src="./images/dubai.jpg" alt="Дубаи" class="place__image">
-          <div class="place__info">
-            <h2 class="place__title">Из России в Дубаи</h2>
-            <button type="submit" class="place__like"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img src="./images/hongkong.jpg" alt="Гонконг" class="place__image">
-          <div class="place__info">
-            <h2 class="place__title">Гонконг, как Кин-Конг</h2>
-            <button type="submit" class="place__like"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img src="./images/london.jpg" alt="Лондон" class="place__image">
-          <div class="place__info">
-            <h2 class="place__title">Лондон, тот самый</h2>
-            <button type="submit" class="place__like"></button>
-          </div>
-        </li>
-        <li class="place">
-          <img src="./images/san_francisco.jpg" alt="Сан-Франциско" class="place__image">
-          <div class="place__info">
-            <h2 class="place__title">Сан-Франциско - Диско</h2>
-            <button type="submit" class="place__like"></button>
-          </div>
-        </li> -->
-      </ul>
-      <template class="template">
-
+      <ul class="places">
+        <template class="template">
           <li class="place">
             <img alt="Изображение ночного города или еще чего-то" class="place__image">
             <div class="place__info">
@@ -82,8 +38,8 @@
               <button type="button" class="place__delete"></button>
             </div>
           </li>
-
-      </template>
+        </template>
+      </ul>
     </main>
     <footer class="footer">
       <p class="footer__copyright">&COPY; 2021 Mesto Russia</p>
@@ -100,5 +56,24 @@
       <button type="submit" class="popup__button">Сохранить</button>
     </div>
   </form>
+  <form class="popup popup-place" name="form">
+    <div class="popup__content">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title">Новое Место</h2>
+      <fieldset class="popup__profile-info">
+        <input type="text" value="Название" class="popup__text-form popup__text-form_place">
+        <input type="url" value="Ссылка на картинку" class="popup__text-form popup__text-form_link" required>
+      </fieldset>
+      <button type="submit" class="popup__button popup__button_place">Создать</button>
+    </div>
+  </form>
+  <div class="popup popup-image">
+    <div class="popup__large-image">
+      <img src="images/dubai.jpg" alt="Изображение ночного города или еще чего-то" class="popup__image">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__note">Дубай</h2>
+    </div>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
