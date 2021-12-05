@@ -66,12 +66,12 @@ function getItem(item) { // функция добавления карточек
   });
 
   const openLargeImage = newItem.querySelector('.place');
-  const openPopupImage = newItem.querySelector('.popup-image')
+  const openPopupImage = document.querySelector('.popup-image')
   openLargeImage.addEventListener('click', function(){
     openPopupImage.classList.add('popup_opened');
   });
 
-  const closeImageButton = newItem.querySelector('.popup__close');
+  const closeImageButton = document.querySelector('.popup__close');
   closeImageButton.addEventListener('click', function(){
     openPopupImage.classList.remove('popup_opened');
   });
