@@ -26,23 +26,6 @@
         <button type="button" class="profile__add-element"></button>
       </section>
       <ul class="places">
-        <template class="template">
-          <div class="popup popup-image">
-            <div class="popup__large-image">
-              <img alt="Изображение ночного города или еще чего-то" class="popup__image">
-              <button type="button" class="popup__close"></button>
-              <h2 class="popup__note"></h2>
-            </div>
-          </div>
-          <li class="place">
-            <img alt="Изображение ночного города или еще чего-то" class="place__image">
-            <div class="place__info">
-              <h2 class="place__title"></h2>
-              <button type="button" class="place__like"></button>
-              <button type="button" class="place__delete"></button>
-            </div>
-          </li>
-        </template>
       </ul>
     </main>
     <footer class="footer">
@@ -71,5 +54,22 @@
       <button type="submit" class="popup__button popup__button_place">Создать</button>
     </div>
   </form>
+  <div class="popup popup-image">
+    <div class="popup__large-image">
+      <img alt="Изображение ночного города или еще чего-то" class="popup__image">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__note"></h2>
+    </div>
+  </div>
+  <template class="template">
+    <li class="place">
+      <img alt="Изображение ночного города или еще чего-то" class="place__image">
+      <div class="place__info">
+        <h2 class="place__title"></h2>
+        <button type="button" class="place__like"></button>
+        <button type="button" class="place__delete"></button>
+      </div>
+    </li>
+  </template>
 </body>
 </html>

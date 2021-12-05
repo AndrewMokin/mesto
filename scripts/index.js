@@ -24,18 +24,18 @@ const nameInput = popup.querySelector('.popup__text-form_name');
 const jobInput = popup.querySelector('.popup__text-form_job');
 const placeInput = popupPlace.querySelector('.popup__text-form_place');
 const linkInput = popupPlace.querySelector('.popup__text-form_link');
-let namePage = document.querySelector('.profile__name');
-let jobPage = document.querySelector('.profile__description');
+const namePage = document.querySelector('.profile__name');
+const jobPage = document.querySelector('.profile__description');
 
-const getTemplateEl = document.querySelector('.template');
+const cardElement = document.querySelector('.template');
 
-const listContainerEl = document.querySelector('.places')
+const listContainerElement = document.querySelector('.places')
 
 function render() {
   const html = initialCards.map((item) => {
     return getItem(item);
   });
-  listContainerEl.append(...html);
+  listContainerElement.append(...html);
 
 
 
@@ -43,13 +43,13 @@ function render() {
 
 
 function getItem(item) { // функция добавления карточек
-  const newItem = getTemplateEl.content.cloneNode(true);
-  const src = newItem.querySelector('.place__image');
-  const srcPopup = newItem.querySelector('.popup__image')
+  const newItem = cardElement.content.cloneNode(true);
+  const cardImageSrc = newItem.querySelector('.place__image');
+  const srcPopup = document.querySelector('.popup__image')
   const name = newItem.querySelector('.place__title');
-  const namePopup = newItem.querySelector('.popup__note');
+  const namePopup = document.querySelector('.popup__note');
   const deleteButton = newItem.querySelector('.place__delete');
-  src.src = item.link;
+  cardImageSrc.src = item.link;
   srcPopup.src = item.link;
   name.textContent = item.name;
   namePopup.textContent = item.name;
