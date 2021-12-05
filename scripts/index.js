@@ -17,7 +17,6 @@ const openProfile = document.querySelector('.profile__editing');
 const addPlace = document.querySelector('.profile__add-element')
 const popup = document.querySelector('.popup');
 const popupPlace = document.querySelector('.popup-place');
-const popupImage = document.querySelector('.popup-image');
 const popupCloseButton = popup.querySelector('.popup__close');
 const popupCloseButtonPlace = popupPlace.querySelector('.popup__close');
 const saveProfile = popup.querySelector('.popup__button')
@@ -29,24 +28,31 @@ let namePage = document.querySelector('.profile__name');
 let jobPage = document.querySelector('.profile__description');
 
 const getTemplateEl = document.querySelector('.template');
-const openLargeImage = document.querySelector('.place');
+
 const listContainerEl = document.querySelector('.places')
 
 function render() {
   const html = initialCards.map((item) => {
     return getItem(item);
-  })
+  });
   listContainerEl.append(...html);
+
+
+
 }
 
 
 function getItem(item) { // функция добавления карточек
   const newItem = getTemplateEl.content.cloneNode(true);
   const src = newItem.querySelector('.place__image');
+  const srcPopup = newItem.querySelector('.popup__image')
   const name = newItem.querySelector('.place__title');
+  const namePopup = newItem.querySelector('.popup__note');
   const deleteButton = newItem.querySelector('.place__delete');
   src.src = item.link;
+  srcPopup.src = item.link;
   name.textContent = item.name;
+  namePopup.textContent = item.name;
 
   newItem.querySelector('.place__like').addEventListener('click', function(evt) { // лайк карточкам
     evt.target.classList.toggle('place__like_active');
@@ -55,6 +61,17 @@ function getItem(item) { // функция добавления карточек
   deleteButton.addEventListener('click', function(){ // удаляем карточки
     const placeItem = deleteButton.closest('.place');
     placeItem.remove();
+  });
+
+  const openLargeImage = newItem.querySelector('.place');
+  const openPopupImage = newItem.querySelector('.popup-image')
+  openLargeImage.addEventListener('click', function(){
+    openPopupImage.classList.add('popup_opened');
+  });
+
+  const closeImageButton = newItem.querySelector('.popup__close');
+  closeImageButton.addEventListener('click', function(){
+    openPopupImage.classList.remove('popup_opened');
   });
 
   return newItem;
@@ -70,10 +87,6 @@ function openPopup() {
 
 function openPopupPlace() {
   popupPlace.classList.add('popup_opened');
-}
-
-function openPopupImage() {
-  popupImage.classList.add('popup_opened')
 }
 
 function closePopup() {
@@ -109,4 +122,4 @@ addPlace.addEventListener('click', openPopupPlace);
 popupCloseButtonPlace.addEventListener('click', closePopupPlace);
 popupPlace.addEventListener('submit', handleAddPlace);
 
-openLargeImage.addEventListener('click', openPopupImage);
+
