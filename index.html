@@ -35,8 +35,9 @@
     </footer>
   </div>
   <form class="popup popup__form" name="form">
+    <div class="popup__overlay"></div>
     <div class="popup__content">
-      <button type="button" class="popup__close"></button>
+      <button id="cross-content" type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__profile-info">
         <input type="text" id="profile-name" value="Жак-Ив Кусто" class="popup__text-form popup__text-form_name" minlength="2" maxlength="40" required>
@@ -48,8 +49,9 @@
     </div>
   </form>
   <form class="popup popup__form popup-place" name="form">
+    <div class="popup__overlay"></div>
     <div class="popup__content">
-      <button type="button" class="popup__close"></button>
+      <button id="cross-place" type="button" class="popup__close"></button>
       <h2 class="popup__title">Новое Место</h2>
       <fieldset class="popup__profile-info">
         <input type="text" id="place" placeholder="Название" class="popup__text-form popup__text-form_place" minlength="2" maxlength="30" required>
@@ -61,9 +63,10 @@
     </div>
   </form>
   <div class="popup popup-image">
+    <div class="popup__overlay"></div>
     <div class="popup__large-image">
       <img alt="Изображение ночного города или еще чего-то" class="popup__image">
-      <button type="button" class="popup__close"></button>
+      <button id="cross-image" type="button" class="popup__close"></button>
       <h2 class="popup__note"></h2>
     </div>
   </div>

@@ -2,6 +2,7 @@
 const showError = (form, input, errorMessageText, inputErrorClass, errorMessageClass) => {
   const errorMessage = form.querySelector(`#${input.id}-error`);
   const errorMessageBorder = form.querySelector(`#${input.id}`);
+  console.log(errorMessageBorder);
   errorMessage.textContent = errorMessageText;
   errorMessage.classList.add(errorMessageClass);
   errorMessageBorder.classList.add(inputErrorClass);

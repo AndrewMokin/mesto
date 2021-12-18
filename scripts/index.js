@@ -12,7 +12,7 @@ const namePage = document.querySelector('.profile__name');
 const jobPage = document.querySelector('.profile__description');
 const popupImage = document.querySelector('.popup-image')
 const imageCrossButton = popupImage.querySelector('.popup__close');
-
+const overlay = popup.querySelector('.popup__overlay')
 const cardElement = document.querySelector('.template');
 
 const listContainerElement = document.querySelector('.places')
@@ -55,30 +55,35 @@ function getItem(item) { // функция добавления карточек
   });
 
   return newItem;
-
-
 }
 
-function openPopup(popupElement, inactiveButtonClass) {
+function openPopup(popupElement) {
   const buttonPlace = document.querySelector('.popup__button_place')
   popupElement.classList.add('popup_opened');
   buttonPlace.classList.add('popup__button_disabled');
   buttonPlace.disabled = true;
+  document.addEventListener('keydown', closeEsc);
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.addEventListener('keydown', closeEsc);
+}
+
+function closeEsc(evt) {
+  if(evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened')
+    closePopup(popupOpened);
+  }
 }
 
 function handleSubmitForm () {
-  // evt.preventDefault();
   namePage.textContent = nameInput.value;
   jobPage.textContent = jobInput.value;
   closePopup(popup);
 }
 
 function handleAddPlace () {
-  // evt.preventDefault();
   const inputPlace = placeInput.value;
   const inputLink = linkInput.value;
   const newCard = getItem({name: inputPlace, link: inputLink});
@@ -87,7 +92,7 @@ function handleAddPlace () {
   closePopup(popupPlace);
 }
 
-render();
+
 
 popup.addEventListener('submit',handleSubmitForm);
 profileButton.addEventListener('click', function(){
@@ -109,4 +114,14 @@ imageCrossButton.addEventListener('click', function(){
     closePopup(popupImage);
   });
 
+ const popupOverlay = document.querySelectorAll('.popup');
+ popupOverlay.forEach((popup) => {
+  popup.addEventListener('click', function(evt) {
+    if (evt.target.classList.contains('popup__overlay')) {
+      popup.classList.remove('popup_opened');
+    }
+  });
+ });
+
+ render();
 
