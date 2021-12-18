@@ -5,7 +5,7 @@
   font-size: 14px;
   line-height: 17px;
   width: 358px;
-  margin: 54px 0 20px 0;
+  margin: 54px 0 0 0;
   outline: none;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -14,7 +14,7 @@
 }
 
 .popup__text-form:last-of-type {
-  margin: 0 0 48px 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 900px) {
@@ -22,4 +22,8 @@
     width: 100%;
     margin-top: 75px;
   }
+}
+
+.popup__text-form.popup__error_border {
+  border-color: red;
 }

@@ -59,23 +59,26 @@ function getItem(item) { // функция добавления карточек
 
 }
 
-function openPopup(popupElement) {
+function openPopup(popupElement, inactiveButtonClass) {
+  const buttonPlace = document.querySelector('.popup__button_place')
   popupElement.classList.add('popup_opened');
+  buttonPlace.classList.add('popup__button_disabled');
+  buttonPlace.disabled = true;
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-function handleSubmitForm (evt) {
-  evt.preventDefault();
+function handleSubmitForm () {
+  // evt.preventDefault();
   namePage.textContent = nameInput.value;
   jobPage.textContent = jobInput.value;
   closePopup(popup);
 }
 
-function handleAddPlace (evt) {
-  evt.preventDefault();
+function handleAddPlace () {
+  // evt.preventDefault();
   const inputPlace = placeInput.value;
   const inputLink = linkInput.value;
   const newCard = getItem({name: inputPlace, link: inputLink});
@@ -105,3 +108,5 @@ popupPlace.addEventListener('submit', handleAddPlace);
 imageCrossButton.addEventListener('click', function(){
     closePopup(popupImage);
   });
+
+

@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
   <script src="./scripts/cards.js" defer></script>
+  <script src="./scripts/validate.js" defer></script>
   <script src="./scripts/index.js" defer></script>
 </head>
 <body>
@@ -33,24 +34,28 @@
       <p class="footer__copyright">&COPY; 2021 Mesto Russia</p>
     </footer>
   </div>
-  <form class="popup" name="form">
+  <form class="popup popup__form" name="form">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__profile-info">
-        <input type="text" value="Жак-Ив Кусто" class="popup__text-form popup__text-form_name">
-        <input type="text" value="Исследователь океана" class="popup__text-form popup__text-form_job">
+        <input type="text" id="profile-name" value="Жак-Ив Кусто" class="popup__text-form popup__text-form_name" minlength="2" maxlength="40" required>
+        <span id="profile-name-error" class="popup__error"></span>
+        <input type="text" id="profile-description" value="Исследователь океана" class="popup__text-form popup__text-form_job" minlength="2" maxlength="200" required>
+        <span id="profile-description-error" class="popup__error"></span>
       </fieldset>
       <button type="submit" class="popup__button">Сохранить</button>
     </div>
   </form>
-  <form class="popup popup-place" name="form">
+  <form class="popup popup__form popup-place" name="form">
     <div class="popup__content">
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Новое Место</h2>
       <fieldset class="popup__profile-info">
-        <input type="text" placeholder="Название" class="popup__text-form popup__text-form_place">
-        <input type="url" placeholder="Ссылка на картинку" class="popup__text-form popup__text-form_link" required>
+        <input type="text" id="place" placeholder="Название" class="popup__text-form popup__text-form_place" minlength="2" maxlength="30" required>
+        <span id="place-error" class="popup__error"></span>
+        <input type="url" id="link" placeholder="Ссылка на картинку" class="popup__text-form popup__text-form_link" required>
+        <span id="link-error" class="popup__error"></span>
       </fieldset>
       <button type="submit" class="popup__button popup__button_place">Создать</button>
     </div>
