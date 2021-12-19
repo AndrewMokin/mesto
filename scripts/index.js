@@ -14,6 +14,7 @@ const popupImage = document.querySelector('.popup-image')
 const imageCrossButton = popupImage.querySelector('.popup__close');
 const overlay = popup.querySelector('.popup__overlay')
 const cardElement = document.querySelector('.template');
+const popupAll = document.querySelectorAll('.popup');
 
 const listContainerElement = document.querySelector('.places')
 
@@ -58,12 +59,16 @@ function getItem(item) { // функция добавления карточек
   return newItem;
 }
 
-function openPopup(popupElement) {
+function diactivateButton () {
   const buttonPlace = document.querySelector('.popup__button_place')
-  popupElement.classList.add('popup_opened');
   buttonPlace.classList.add('popup__button_disabled');
   buttonPlace.disabled = true;
+}
+
+function openPopup(popupElement) {
+  popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closeEsc);
+  diactivateButton();
 }
 
 function closePopup(popupElement) {
@@ -71,12 +76,13 @@ function closePopup(popupElement) {
 }
 
 function closeEsc(evt) {
+popupAll.forEach((popup) => {
   const popupOpened = document.querySelector('.popup_opened')
-  if(evt.key === 'Escape' && popupOpened.classList.contains('popup_opened')) {
+  if(evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
     closePopup(popupOpened);
   }
+});
 }
-
 
 
 function handleSubmitForm () {
@@ -116,8 +122,8 @@ imageCrossButton.addEventListener('click', function(){
     closePopup(popupImage);
   });
 
- const popupOverlay = document.querySelectorAll('.popup');
- popupOverlay.forEach((popup) => {
+//  const popupOverlay = document.querySelectorAll('.popup');
+ popupAll.forEach((popup) => {
   popup.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('popup__overlay')) {
       popup.classList.remove('popup_opened');
