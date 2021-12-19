@@ -1,22 +1,22 @@
 const profileButton = document.querySelector('.profile__editing');
 const newPlaceButton = document.querySelector('.profile__add-element')
-const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup-profile');
 const popupPlace = document.querySelector('.popup-place');
-const popupCrossButton = popup.querySelector('.popup__close');
+const popupCrossButtonProfile = popupProfile.querySelector('.popup__close');
 const popupCrossButtonPlace = popupPlace.querySelector('.popup__close');
-const nameInput = popup.querySelector('.popup__text-form_name');
-const jobInput = popup.querySelector('.popup__text-form_job');
+const nameInput = popupProfile.querySelector('.popup__text-form_name');
+const jobInput = popupProfile.querySelector('.popup__text-form_job');
 const placeInput = popupPlace.querySelector('.popup__text-form_place');
 const linkInput = popupPlace.querySelector('.popup__text-form_link');
 const namePage = document.querySelector('.profile__name');
 const jobPage = document.querySelector('.profile__description');
-const popupImage = document.querySelector('.popup-image')
+const popupImage = document.querySelector('.popup-image');
 const imageCrossButton = popupImage.querySelector('.popup__close');
-const overlay = popup.querySelector('.popup__overlay')
 const cardElement = document.querySelector('.template');
-const popupAll = document.querySelectorAll('.popup');
-
-const listContainerElement = document.querySelector('.places')
+const allPopups = document.querySelectorAll('.popup');
+const srcPopup = document.querySelector('.popup__image');
+const namePopup = document.querySelector('.popup__note');
+const listContainerElement = document.querySelector('.places');
 
 function render() {
   const html = initialCards.map((item) => {
@@ -29,9 +29,7 @@ function render() {
 function getItem(item) { // функция добавления карточек
   const newItem = cardElement.content.cloneNode(true);
   const cardImageSrc = newItem.querySelector('.place__image');
-  const srcPopup = document.querySelector('.popup__image')
   const name = newItem.querySelector('.place__title');
-  const namePopup = document.querySelector('.popup__note');
   const deleteButton = newItem.querySelector('.place__delete');
   const buttonLike = newItem.querySelector('.place__like');
   cardImageSrc.src = item.link;
@@ -51,15 +49,15 @@ function getItem(item) { // функция добавления карточек
   const largeImage = newItem.querySelector('.place');
   largeImage.addEventListener('click', function(){
     srcPopup.src = item.link;
+    srcPopup.alt = item.name;
     namePopup.textContent = item.name;
-    popupImage.classList.add('popup_opened');
-    document.addEventListener('keydown', closeEsc);
+    openPopup(popupImage);
   });
 
   return newItem;
 }
 
-function diactivateButton () {
+function diactivateButtonPlace () {
   const buttonPlace = document.querySelector('.popup__button_place')
   buttonPlace.classList.add('popup__button_disabled');
   buttonPlace.disabled = true;
@@ -67,21 +65,19 @@ function diactivateButton () {
 
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
-  document.addEventListener('keydown', closeEsc);
-  diactivateButton();
+  document.addEventListener('keydown', closeByEsc);
 }
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc)
 }
 
-function closeEsc(evt) {
-popupAll.forEach((popup) => {
-  const popupOpened = document.querySelector('.popup_opened')
-  if(evt.key === 'Escape' && popup.classList.contains('popup_opened')) {
-    closePopup(popupOpened);
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openPopup = document.querySelector('.popup_opened');
+    closePopup(openPopup);
   }
-});
 }
 
 
@@ -97,21 +93,23 @@ function handleAddPlace () {
   const newCard = getItem({name: inputPlace, link: inputLink});
   listContainerElement.prepend(newCard);
   placeInput.value='';
+  inputLink.value='';
   closePopup(popupPlace);
 }
 
 
 
-popup.addEventListener('submit',handleSubmitForm);
+popupProfile.addEventListener('submit', handleSubmitForm);
 profileButton.addEventListener('click', function(){
-  openPopup(popup);
+  openPopup(popupProfile);
 });
-popupCrossButton.addEventListener('click', function(){
-  closePopup(popup);
+popupCrossButtonProfile.addEventListener('click', function(){
+  closePopup(popupProfile);
 });
 
 newPlaceButton.addEventListener('click', function(){
   openPopup(popupPlace);
+  diactivateButtonPlace();
 });
 popupCrossButtonPlace.addEventListener('click', function(){
   closePopup(popupPlace);
@@ -122,8 +120,7 @@ imageCrossButton.addEventListener('click', function(){
     closePopup(popupImage);
   });
 
-//  const popupOverlay = document.querySelectorAll('.popup');
- popupAll.forEach((popup) => {
+ allPopups.forEach((popup) => {
   popup.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('popup__overlay')) {
       popup.classList.remove('popup_opened');

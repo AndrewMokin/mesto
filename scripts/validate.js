@@ -1,18 +1,15 @@
-
 const showError = (form, input, errorMessageText, inputErrorClass, errorMessageClass) => {
   const errorMessage = form.querySelector(`#${input.id}-error`);
-  const errorMessageBorder = form.querySelector(`#${input.id}`);
   errorMessage.textContent = errorMessageText;
   errorMessage.classList.add(errorMessageClass);
-  errorMessageBorder.classList.add(inputErrorClass);
+  input.classList.add(inputErrorClass);
 }
 
 const hideError = (form, input, inputErrorClass, errorMessageClass) => {
   const errorMessage = form.querySelector(`#${input.id}-error`);
-  const errorMessageBorder = form.querySelector(`#${input.id}`);
   errorMessage.textContent = '';
   errorMessage.classList.remove(errorMessageClass);
-  errorMessageBorder.classList.remove(inputErrorClass);
+  input.classList.remove(inputErrorClass);
 }
 
 const hasInvalidInput = (inputs) => {
