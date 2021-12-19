@@ -12,6 +12,5 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility .3s, opacity .3s ease-in;
-  margin-top: 60px;
 }
 

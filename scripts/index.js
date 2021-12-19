@@ -52,6 +52,7 @@ function getItem(item) { // функция добавления карточек
     srcPopup.src = item.link;
     namePopup.textContent = item.name;
     popupImage.classList.add('popup_opened');
+    document.addEventListener('keydown', closeEsc);
   });
 
   return newItem;
@@ -67,15 +68,16 @@ function openPopup(popupElement) {
 
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
-  document.addEventListener('keydown', closeEsc);
 }
 
 function closeEsc(evt) {
-  if(evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened')
+  const popupOpened = document.querySelector('.popup_opened')
+  if(evt.key === 'Escape' && popupOpened.classList.contains('popup_opened')) {
     closePopup(popupOpened);
   }
 }
+
+
 
 function handleSubmitForm () {
   namePage.textContent = nameInput.value;
