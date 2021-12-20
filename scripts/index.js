@@ -72,6 +72,7 @@ function openPopup(popupElement) {
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc)
+  document.activeElement.blur()
 }
 
 function closeByEsc(evt) {
