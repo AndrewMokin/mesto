@@ -85,7 +85,7 @@ function closeByEsc(evt) {
 function handleProfileSubmitForm () {
   namePage.textContent = nameInput.value;
   jobPage.textContent = jobInput.value;
-  closePopup(popup);
+  closePopup(popupProfile);
 }
 
 function handleAddPlace () {
