@@ -33,6 +33,7 @@ function getItem(item) { // функция добавления карточек
   const deleteButton = newItem.querySelector('.place__delete');
   const buttonLike = newItem.querySelector('.place__like');
   cardImageSrc.src = item.link;
+  cardImageSrc.alt = item.name;
   name.textContent = item.name;
 
   buttonLike.addEventListener('click', function(evt) { // лайк карточкам
@@ -81,7 +82,7 @@ function closeByEsc(evt) {
 }
 
 
-function handleSubmitForm () {
+function handleProfileSubmitForm () {
   namePage.textContent = nameInput.value;
   jobPage.textContent = jobInput.value;
   closePopup(popup);
@@ -93,13 +94,13 @@ function handleAddPlace () {
   const newCard = getItem({name: inputPlace, link: inputLink});
   listContainerElement.prepend(newCard);
   placeInput.value='';
-  inputLink.value='';
+  linkInput.value='';
   closePopup(popupPlace);
 }
 
 
 
-popupProfile.addEventListener('submit', handleSubmitForm);
+popupProfile.addEventListener('submit', handleProfileSubmitForm);
 profileButton.addEventListener('click', function(){
   openPopup(popupProfile);
 });
@@ -123,7 +124,7 @@ imageCrossButton.addEventListener('click', function(){
  allPopups.forEach((popup) => {
   popup.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('popup__overlay')) {
-      popup.classList.remove('popup_opened');
+      closePopup(popup);
     }
   });
  });
