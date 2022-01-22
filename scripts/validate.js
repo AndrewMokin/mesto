@@ -5,7 +5,7 @@ const showError = (form, input, errorMessageText, inputErrorClass, errorMessageC
   input.classList.add(inputErrorClass);
 }
 
-const hideError = (form, input, inputErrorClass, errorMessageClass) => {
+function hideError(form, input, inputErrorClass, errorMessageClass) {
   const errorMessage = form.querySelector(`#${input.id}-error`);
   errorMessage.textContent = '';
   errorMessage.classList.remove(errorMessageClass);

@@ -36,7 +36,7 @@ export class Card {
     const cardElement = document
     .querySelector('.template')
     .content
-    // .querySelector('.place')
+    .querySelector('.place')
     .cloneNode(true);
     return cardElement;
   }
@@ -46,7 +46,7 @@ export class Card {
     this._element.querySelector('.place__title').textContent = this._name;
     this._element.querySelector('.place__delete').addEventListener('click', this._handleDelitePlace);
     this._element.querySelector('.place__like').addEventListener('click', this._handleClickLike);
-    this._element.querySelector('.place').addEventListener('click', () =>{
+    this._element.addEventListener('click', () =>{
       this._handleClickCard(this._link, this._name);
     });
     return this._element;
