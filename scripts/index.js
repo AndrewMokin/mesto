@@ -10,21 +10,29 @@ const placeInput = popupPlace.querySelector('.popup__text-form_place');
 const linkInput = popupPlace.querySelector('.popup__text-form_link');
 const namePage = document.querySelector('.profile__name');
 const jobPage = document.querySelector('.profile__description');
-// const popupImage = document.querySelector('.popup-image');
+const popupImage = document.querySelector('.popup-image');
 const imageCrossButton = popupImage.querySelector('.popup__close');
 // const cardElement = document.querySelector('.template');
 const allPopups = document.querySelectorAll('.popup');
 // const srcPopup = document.querySelector('.popup__image');
 // const namePopup = document.querySelector('.popup__note');
-import {initialCards, Card, popupImage} from './cards.js';
-export {openPopup};
+const srcPopup = document.querySelector('.popup__image');
+import {initialCards, Card} from './cards.js';
+
 
 const listContainerElement = document.querySelector('.places');
 
-initialCards.forEach((item) =>{
-  const card = new Card(item.link, item.name);
+initialCards.forEach((item) => {
+  const card = new Card(item.link, item.name, handleClickCard);
   const cardElement = card.generateCard();
-  listContainerElement.append(cardElement)
+  listContainerElement.append(cardElement);
+
+  function handleClickCard(link, name) {
+    openPopup(popupImage);
+    popupImage.querySelector('.popup__image').src = link;
+    popupImage.querySelector('.popup__image').alt = link;
+    popupImage.querySelector('.popup__note').textContent = name;
+  }
 });
 
 
