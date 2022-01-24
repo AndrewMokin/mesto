@@ -27,14 +27,15 @@ export const initialCards = [
 ]
 
 export class Card {
-  constructor (link, name, handleClickCard) {
+  constructor (selector,link, name, handleClickCard) {
+    this._selector = selector;
     this._link = link;
     this._name = name;
     this._handleClickCard = handleClickCard;
   }
   _getTemplate() {
     const cardElement = document
-    .querySelector('.template')
+    .querySelector(this._selector)
     .content
     .querySelector('.place')
     .cloneNode(true);

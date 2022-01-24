@@ -12,71 +12,31 @@ const namePage = document.querySelector('.profile__name');
 const jobPage = document.querySelector('.profile__description');
 const popupImage = document.querySelector('.popup-image');
 const imageCrossButton = popupImage.querySelector('.popup__close');
-// const cardElement = document.querySelector('.template');
 const allPopups = document.querySelectorAll('.popup');
-// const srcPopup = document.querySelector('.popup__image');
-// const namePopup = document.querySelector('.popup__note');
-const srcPopup = document.querySelector('.popup__image');
 import {initialCards, Card} from './cards.js';
+import FormValidator from './FormValidator.js';
 
+const enableValidation = {
+	formSelector: '.popup__form',
+  inputSelector: '.popup__text-form',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__error_border',
+  errorClass: 'popup__error_visible'
+};
+const formProfileValidator = new FormValidator(enableValidation, popupProfile);
+const formPlaceValidator = new FormValidator(enableValidation, popupPlace);
+formProfileValidator.enableValidation();
+formPlaceValidator.enableValidation();
+console.log(formProfileValidator)
 
 const listContainerElement = document.querySelector('.places');
 
 initialCards.forEach((item) => {
-  const card = new Card(item.link, item.name, handleClickCard);
+  const card = new Card('.template',item.link, item.name, handleClickCard);
   const cardElement = card.generateCard();
   listContainerElement.append(cardElement);
-
-  function handleClickCard(link, name) {
-    openPopup(popupImage);
-    popupImage.querySelector('.popup__image').src = link;
-    popupImage.querySelector('.popup__image').alt = link;
-    popupImage.querySelector('.popup__note').textContent = name;
-  }
 });
-
-
-// function render() {
-//   const html = initialCards.map((item) => {
-//     return getItem(item);
-//   });
-//   listContainerElement.append(...html);
-
-// }
-
-// function getItem(item) { // функция добавления карточек
-//   const newItem = cardElement.content.cloneNode(true);
-//   const cardImageSrc = newItem.querySelector('.place__image');
-//   const name = newItem.querySelector('.place__title');
-//   const deleteButton = newItem.querySelector('.place__delete');
-//   const buttonLike = newItem.querySelector('.place__like');
-//   cardImageSrc.src = item.link;
-//   cardImageSrc.alt = item.name;
-//   name.textContent = item.name;
-
-//   buttonLike.addEventListener('click', function(evt) { // лайк карточкам
-//     evt.target.classList.toggle('place__like_active');
-//     evt.stopPropagation();
-//   });
-
-//   deleteButton.addEventListener('click', function(evt){ // удаляем карточки
-//     const placeItem = deleteButton.closest('.place');
-//     evt.stopPropagation();
-//     placeItem.remove();
-//   });
-
-//   const largeImage = newItem.querySelector('.place');
-//   largeImage.addEventListener('click', function(){
-//     srcPopup.src = item.link;
-//     srcPopup.alt = item.name;
-//     namePopup.textContent = item.name;
-//     openPopup(popupImage);
-//   });
-
-//   return newItem;
-// }
-
-
 
 function diactivateButtonPlace () {
   const buttonPlace = document.querySelector('.popup__button_place')
@@ -102,20 +62,28 @@ function closeByEsc(evt) {
   }
 }
 
-
-function handleProfileSubmitForm () {
+function handleProfileSubmitForm (evt) {
+  evt.preventDefault();
   namePage.textContent = nameInput.value;
   jobPage.textContent = jobInput.value;
   closePopup(popupProfile);
 }
 
-function handleAddPlace () {
+function handleClickCard(link, name) {
+  openPopup(popupImage);
+  popupImage.querySelector('.popup__image').src = link;
+  popupImage.querySelector('.popup__image').alt = link;
+  popupImage.querySelector('.popup__note').textContent = name;
+}
+
+function handleAddPlace (evt) {
+  evt.preventDefault();
   const inputPlace = placeInput.value;
   const inputLink = linkInput.value;
-  const newCard = getItem({name: inputPlace, link: inputLink});
-  listContainerElement.prepend(newCard);
-  placeInput.value='';
-  linkInput.value='';
+  const cardItem = new Card('.template', inputLink, inputPlace, handleClickCard);
+	const card = cardItem.generateCard();
+	listContainerElement.prepend(card);
+	evt.target.reset();
   closePopup(popupPlace);
 }
 
@@ -142,13 +110,13 @@ imageCrossButton.addEventListener('click', function(){
     closePopup(popupImage);
   });
 
- allPopups.forEach((popup) => {
+allPopups.forEach((popup) => {
   popup.addEventListener('click', function(evt) {
     if (evt.target.classList.contains('popup__overlay')) {
       closePopup(popup);
     }
   });
- });
+});
 
 
 
