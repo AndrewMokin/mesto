@@ -1,3 +1,30 @@
+export const initialCards = [
+  {
+    name: 'Огни ночной Москвы',
+    link: './images/moscow.jpg'
+  },
+  {
+    name: 'Бангкок',
+    link: './images/bangkok.jpg'
+  },
+  {
+    name: 'Из России в Дубаи',
+    link: './images/dubai.jpg'
+  },
+  {
+    name: 'Гонконг, как Кин-Конг',
+    link: './images/hongkong.jpg'
+  },
+  {
+    name: 'Лондон, тот самый',
+    link: './images/london.jpg'
+  },
+  {
+    name: 'Сан-Франциско - Диско',
+    link: './images/san_francisco.jpg'
+  },
+]
+
 const profileButton = document.querySelector('.profile__editing');
 const newPlaceButton = document.querySelector('.profile__add-element')
 const popupProfile = document.querySelector('.popup-profile');
@@ -11,9 +38,11 @@ const linkInput = popupPlace.querySelector('.popup__text-form_link');
 const namePage = document.querySelector('.profile__name');
 const jobPage = document.querySelector('.profile__description');
 const popupImage = document.querySelector('.popup-image');
+const popupImageLink = popupImage.querySelector('.popup__image');
+const popupImageNote = popupImage.querySelector('.popup__note');
 const imageCrossButton = popupImage.querySelector('.popup__close');
 const allPopups = document.querySelectorAll('.popup');
-import {initialCards, Card} from './cards.js';
+import Card from './Cards.js';
 import FormValidator from './FormValidator.js';
 
 const enableValidation = {
@@ -28,20 +57,27 @@ const formProfileValidator = new FormValidator(enableValidation, popupProfile);
 const formPlaceValidator = new FormValidator(enableValidation, popupPlace);
 formProfileValidator.enableValidation();
 formPlaceValidator.enableValidation();
-console.log(formProfileValidator)
+
+formProfileValidator.resetValidation();
+formPlaceValidator.resetValidation();
 
 const listContainerElement = document.querySelector('.places');
 
-initialCards.forEach((item) => {
-  const card = new Card('.template',item.link, item.name, handleClickCard);
-  const cardElement = card.generateCard();
-  listContainerElement.append(cardElement);
+initialCards.forEach((item) => { //рендеринг карточек
+  listContainerElement.append(createCard(item));
 });
 
-function diactivateButtonPlace () {
-  const buttonPlace = document.querySelector('.popup__button_place')
-  buttonPlace.classList.add('popup__button_disabled');
-  buttonPlace.disabled = true;
+function handleClickCard(link, name) {
+  openPopup(popupImage);
+  popupImageLink.src = link;
+  popupImageLink.alt = link;
+  popupImageNote.textContent = name;
+}
+
+function createCard(item) {
+  const card = new Card('.template',item.link, item.name, handleClickCard);
+  const cardElement = card.generateCard();
+  return cardElement;
 }
 
 function openPopup(popupElement) {
@@ -69,13 +105,6 @@ function handleProfileSubmitForm (evt) {
   closePopup(popupProfile);
 }
 
-function handleClickCard(link, name) {
-  openPopup(popupImage);
-  popupImage.querySelector('.popup__image').src = link;
-  popupImage.querySelector('.popup__image').alt = link;
-  popupImage.querySelector('.popup__note').textContent = name;
-}
-
 function handleAddPlace (evt) {
   evt.preventDefault();
   const inputPlace = placeInput.value;
@@ -99,7 +128,7 @@ popupCrossButtonProfile.addEventListener('click', function(){
 
 newPlaceButton.addEventListener('click', function(){
   openPopup(popupPlace);
-  diactivateButtonPlace();
+  formPlaceValidator.resetValidation();;
 });
 popupCrossButtonPlace.addEventListener('click', function(){
   closePopup(popupPlace);

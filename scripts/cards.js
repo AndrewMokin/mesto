@@ -1,32 +1,4 @@
-
-export const initialCards = [
-  {
-    name: 'Огни ночной Москвы',
-    link: './images/moscow.jpg'
-  },
-  {
-    name: 'Бангкок',
-    link: './images/bangkok.jpg'
-  },
-  {
-    name: 'Из России в Дубаи',
-    link: './images/dubai.jpg'
-  },
-  {
-    name: 'Гонконг, как Кин-Конг',
-    link: './images/hongkong.jpg'
-  },
-  {
-    name: 'Лондон, тот самый',
-    link: './images/london.jpg'
-  },
-  {
-    name: 'Сан-Франциско - Диско',
-    link: './images/san_francisco.jpg'
-  },
-]
-
-export class Card {
+export default class Card {
   constructor (selector,link, name, handleClickCard) {
     this._selector = selector;
     this._link = link;
@@ -43,22 +15,21 @@ export class Card {
   }
   generateCard() {
     this._element = this._getTemplate();
+    this._likeButton = this._element.querySelector('.place__like')
     this._element.querySelector('.place__image').src = this._link;
     this._element.querySelector('.place__title').textContent = this._name;
     this._element.querySelector('.place__delete').addEventListener('click', this._handleDelitePlace);
-    this._element.querySelector('.place__like').addEventListener('click', this._handleClickLike);
-    this._element.addEventListener('click', () =>{
+    this._likeButton.addEventListener('click', this._handleClickLike);
+    this._element.querySelector('.place__image').addEventListener('click', () =>{
       this._handleClickCard(this._link, this._name);
     });
     return this._element;
   }
-  _handleDelitePlace = (evt) => {
+  _handleDelitePlace = () => {
     this._element.remove();
-    evt.stopPropagation();
   }
-  _handleClickLike = (evt) => {
-    this._element.querySelector('.place__like').classList.toggle('place__like_active');
-    evt.stopPropagation();
+  _handleClickLike = () => {
+    this._likeButton.classList.toggle('place__like_active');
   }
 }
 
