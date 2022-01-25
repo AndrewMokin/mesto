@@ -42,6 +42,7 @@ const popupImageLink = popupImage.querySelector('.popup__image');
 const popupImageNote = popupImage.querySelector('.popup__note');
 const imageCrossButton = popupImage.querySelector('.popup__close');
 const allPopups = document.querySelectorAll('.popup');
+import Cards from './Cards.js';
 import Card from './Cards.js';
 import FormValidator from './FormValidator.js';
 
@@ -75,7 +76,7 @@ function handleClickCard(link, name) {
 }
 
 function createCard(item) {
-  const card = new Card('.template',item.link, item.name, handleClickCard);
+  const card = new Cards('.template',item.link, item.name, handleClickCard);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -109,7 +110,7 @@ function handleAddPlace (evt) {
   evt.preventDefault();
   const inputPlace = placeInput.value;
   const inputLink = linkInput.value;
-  const cardItem = new Card('.template', inputLink, inputPlace, handleClickCard);
+  const cardItem = new Cards('.template', inputLink, inputPlace, handleClickCard);
 	const card = cardItem.generateCard();
 	listContainerElement.prepend(card);
 	evt.target.reset();
