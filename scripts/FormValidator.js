@@ -53,7 +53,7 @@ export default class FormValidator {
     }
   };
   resetValidation() {
-    this._toggleButtonError(this._submitButton);
+    this._toggleButtonError();
     this._inputList.forEach((inputElement) => {
       this._hideError(inputElement);
     });
