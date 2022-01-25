@@ -43,7 +43,6 @@ const popupImageNote = popupImage.querySelector('.popup__note');
 const imageCrossButton = popupImage.querySelector('.popup__close');
 const allPopups = document.querySelectorAll('.popup');
 import Cards from './Cards.js';
-import Card from './Cards.js';
 import FormValidator from './FormValidator.js';
 
 const enableValidation = {
