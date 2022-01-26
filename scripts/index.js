@@ -109,9 +109,10 @@ function handleAddPlace (evt) {
   evt.preventDefault();
   const inputPlace = placeInput.value;
   const inputLink = linkInput.value;
-  const cardItem = new Cards('.template', inputLink, inputPlace, handleClickCard);
-	const card = cardItem.generateCard();
-	listContainerElement.prepend(card);
+  const card = {name:inputPlace,link:inputLink }
+  createCard(card)
+	listContainerElement.prepend(createCard(card));
+  console.log(createCard(card))
 	evt.target.reset();
   closePopup(popupPlace);
 }
