@@ -58,7 +58,6 @@ const formPlaceValidator = new FormValidator(enableValidation, popupPlace);
 formProfileValidator.enableValidation();
 formPlaceValidator.enableValidation();
 
-formProfileValidator.resetValidation();
 formPlaceValidator.resetValidation();
 
 const listContainerElement = document.querySelector('.places');
@@ -116,8 +115,6 @@ function handleAddPlace (evt) {
 	evt.target.reset();
   closePopup(popupPlace);
 }
-
-
 
 popupProfile.addEventListener('submit', handleProfileSubmitForm);
 profileButton.addEventListener('click', function(){
