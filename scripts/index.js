@@ -47,6 +47,7 @@ import FormValidator from './FormValidator.js';
 import Popup from '../components/Popup.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
 const enableValidation = {
 	formSelector: '.popup__form',
@@ -82,9 +83,9 @@ const listContainerElement = document.querySelector('.places');
 
 
 const popupWithImage = new PopupWithImage(popupImage)
+popupWithImage.setEventListeners()
 
-
-
+const handleCardClick = (link, name) => {popupWithImage.open(link, name)}
 const renderCard = new Section ({
   items: initialCards,
   renderer: (item) => {
@@ -97,9 +98,54 @@ const renderCard = new Section ({
 
   },listContainerElement);
 
-
-
 renderCard.render()
+
+const popupWithFormPlace = new PopupWithForm(
+  popupPlace,handleAddPlace);
+
+newPlaceButton.addEventListener('click', function(){
+  popupWithFormPlace.open();
+});
+
+popupWithFormPlace.setEventListeners()
+
+function handleAddPlace (item) {
+  const card = new Cards('.template',item.link, item.place, handleCardClick);
+  const cardElement = card.generateCard();
+	listContainerElement.prepend(cardElement);
+}
+
+// function handleAddPlace (evt) {
+//   evt.preventDefault();
+//   const inputPlace = placeInput.value;
+//   const inputLink = linkInput.value;
+//   const card = {name:inputPlace,link:inputLink }
+//   createCard(card)
+// 	listContainerElement.prepend(createCard(card));
+//   console.log(createCard(card))
+// 	evt.target.reset();
+//   placePopup.close();
+// }
+
+const popupWithFormProfile = new PopupWithForm(popupProfile,handleProfileSubmitForm)
+profileButton.addEventListener('click', function(){
+  popupWithFormProfile.open();
+  popupWithFormProfile.setEventListeners();
+});
+
+function handleProfileSubmitForm () {
+  namePage.textContent = nameInput.value;
+  jobPage.textContent = jobInput.value;
+  popupWithFormProfile.close();
+}
+
+// function handleProfileSubmitForm (evt) {
+//   evt.preventDefault();
+//   namePage.textContent = nameInput.value;
+//   jobPage.textContent = jobInput.value;
+//   profilePopup.close();
+// }
+
 
 // function createCard(item) {
 //   const card = new Cards('.template',item.link, item.name, handleClickCard);
@@ -126,30 +172,15 @@ renderCard.render()
 //   }
 // }
 
-function handleProfileSubmitForm (evt) {
-  evt.preventDefault();
-  namePage.textContent = nameInput.value;
-  jobPage.textContent = jobInput.value;
-  profilePopup.close();
-}
 
-function handleAddPlace (evt) {
-  evt.preventDefault();
-  const inputPlace = placeInput.value;
-  const inputLink = linkInput.value;
-  const card = {name:inputPlace,link:inputLink }
-  createCard(card)
-	listContainerElement.prepend(createCard(card));
-  console.log(createCard(card))
-	evt.target.reset();
-  placePopup.close();
-}
 
-const profilePopup = new Popup(popupProfile,profileButton,popupCrossButtonProfile);
-profilePopup.setEventListeners();
 
-const placePopup = new Popup(popupPlace,newPlaceButton,popupCrossButtonPlace);
-placePopup.setEventListeners();
+
+// const profilePopup = new Popup(popupProfile,profileButton,popupCrossButtonProfile);
+// profilePopup.setEventListeners();
+
+// const placePopup = new Popup(popupPlace,newPlaceButton,popupCrossButtonPlace);
+// placePopup.setEventListeners();
 
 popupProfile.addEventListener('submit', handleProfileSubmitForm);
 // profileButton.addEventListener('click', function(){
