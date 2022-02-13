@@ -38,10 +38,11 @@
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <fieldset class="popup__profile-info">
-        <input type="text" id="profile-name" value="Жак-Ив Кусто" class="popup__text-form popup__text-form_name" minlength="2" maxlength="40" required>
-        <span id="profile-name-error" class="popup__error"></span>
-        <input type="text" id="profile-description" value="Исследователь океана" class="popup__text-form popup__text-form_job" minlength="2" maxlength="200" required>
-        <span id="profile-description-error" class="popup__error"></span>
+        <input type="text" id="profileName"  class="popup__text-form popup__text-form_name" minlength="2" maxlength="40" required>
+        <!-- value="Жак-Ив Кусто" -->
+        <span id="profileName-error" class="popup__error"></span>
+        <input type="text" id="profileDescription" value="Исследователь океана" class="popup__text-form popup__text-form_job" minlength="2" maxlength="200" required>
+        <span id="profileDescription-error" class="popup__error"></span>
       </fieldset>
       <button type="submit" class="popup__button">Сохранить</button>
     </form>
@@ -78,12 +79,13 @@
       </div>
     </li>
   </template>
-  <script type="module" src="./scripts/Cards.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
+  <script type="module" src="./components/Cards.js"></script>
+  <script type="module" src="./components/FormValidator.js"></script>
   <script type="module" src="./scripts/index.js"></script>
   <script type="module" src="./components/Popup.js"></script>
   <script type="module" src="./components/Section.js"></script>
   <script type="module" src="./components/PopupWithImage.js"></script>
   <script type="module" src="./components/PopupWithForm.js"></script>
+  <script type="module" src="./components/UserInfo.js"></script>
 </body>
 </html>
