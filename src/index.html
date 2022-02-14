@@ -6,18 +6,17 @@
   <meta name="description" content="7,8 Sprint">
   <meta name="keywords" content="html, css, JS">
   <meta name="author" content="Andrew Mokin">
-  <link rel="stylesheet" href="../pages/index.css">
   <title>Mesto</title>
 
 </head>
 <body>
   <div class="page">
     <header class="header">
-      <img src="../images/mesto.SVG" class="header__logo" alt="логотип">
+      <img src="<%=require('../images/mesto.svg')%>" class="header__logo" alt="логотип">
     </header>
     <main>
       <section class="profile">
-        <img src="../images/zhak_kusto.png" alt="изображение портфолио" class="profile__image">
+        <img src="<%=require('../images/zhak_kusto.png')%>" alt="изображение портфолио" class="profile__image">
           <div class="profile__name-editing">
             <h2 class="profile__name">Жак-Ив Кусто</h2>
             <button type="button" class="profile__editing"></button>
@@ -78,13 +77,5 @@
       </div>
     </li>
   </template>
-  <script type="module" src="../components/Cards.js"></script>
-  <script type="module" src="../components/FormValidator.js"></script>
-  <script type="module" src="../src/index.js"></script>
-  <script type="module" src="../components/Popup.js"></script>
-  <script type="module" src="../components/Section.js"></script>
-  <script type="module" src="../components/PopupWithImage.js"></script>
-  <script type="module" src="../components/PopupWithForm.js"></script>
-  <script type="module" src="../components/UserInfo.js"></script>
 </body>
 </html>

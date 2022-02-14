@@ -1,27 +1,34 @@
+import moscow from '../images/moscow.jpg';
+import bangkok from '../images/bangkok.jpg';
+import dubai from '../images/dubai.jpg';
+import hongkong from '../images/hongkong.jpg';
+import london from '../images/london.jpg';
+import san_francisco from '../images/san_francisco.jpg';
+
 export const initialCards = [
   {
     name: 'Огни ночной Москвы',
-    link: '../images/moscow.jpg'
+    link: moscow
   },
   {
     name: 'Бангкок',
-    link: '../images/bangkok.jpg'
+    link: bangkok
   },
   {
     name: 'Из России в Дубаи',
-    link: '../images/dubai.jpg'
+    link: dubai
   },
   {
     name: 'Гонконг, как Кин-Конг',
-    link: '../images/hongkong.jpg'
+    link: hongkong
   },
   {
     name: 'Лондон, тот самый',
-    link: '../images/london.jpg'
+    link: london
   },
   {
     name: 'Сан-Франциско - Диско',
-    link: '../images/san_francisco.jpg'
+    link: san_francisco
   },
 ]
 
