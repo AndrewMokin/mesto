@@ -12,11 +12,11 @@
 <body>
   <div class="page">
     <header class="header">
-      <img src="<%=require('../images/mesto.svg')%>" class="header__logo" alt="логотип">
+      <img src="<%=require('./images/mesto.svg')%>" class="header__logo" alt="логотип">
     </header>
     <main>
       <section class="profile">
-        <img src="<%=require('../images/zhak_kusto.png')%>" alt="изображение портфолио" class="profile__image">
+        <img src="<%=require('./images/zhak_kusto.png')%>" alt="изображение портфолио" class="profile__image">
           <div class="profile__name-editing">
             <h2 class="profile__name">Жак-Ив Кусто</h2>
             <button type="button" class="profile__editing"></button>
@@ -51,8 +51,8 @@
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Новое Место</h2>
       <fieldset class="popup__profile-info">
-        <input type="text" id="place" placeholder="Название" class="popup__text-form popup__text-form_place name" minlength="2" maxlength="30" required>
-        <span id="place-error" class="popup__error"></span>
+        <input type="text" id="name" placeholder="Название" class="popup__text-form popup__text-form_place name" minlength="2" maxlength="30" required>
+        <span id="name-error" class="popup__error"></span>
         <input type="url" id="link" placeholder="Ссылка на картинку" class="popup__text-form popup__text-form_link link" required>
         <span id="link-error" class="popup__error"></span>
       </fieldset>

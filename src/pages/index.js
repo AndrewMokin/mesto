@@ -1,11 +1,11 @@
 import {initialCards,enableValidation,profileButton,newPlaceButton,popupProfile,popupPlace,nameInput,jobInput,popupImage,listContainerElement} from '../utils/constants.js'
-import Cards from '../components/Cards.js';
+import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import '../pages/index.css';
+import './index.css';
 
 const formProfileValidator = new FormValidator(enableValidation, popupProfile);
 const formPlaceValidator = new FormValidator(enableValidation, popupPlace);
@@ -17,14 +17,13 @@ formPlaceValidator.resetValidation();
 const popupWithImage = new PopupWithImage(popupImage)
 popupWithImage.setEventListeners()
 
+
 const handleCardClick = (link, name) => {popupWithImage.open(link, name)}
 const renderCard = new Section ({
   items: initialCards,
   renderer: (item) => {
     const handleCardClick = (link, name) => {popupWithImage.open(link, name)}
-    const card = new Cards('.template',item.link, item.name, handleCardClick);
-    const cardElement = card.generateCard();
-    return cardElement;
+    return addCard(item,handleCardClick)
   }
 
   },listContainerElement);
@@ -41,10 +40,15 @@ newPlaceButton.addEventListener('click', function(){
 
 popupWithFormPlace.setEventListeners()
 
-function handleAddPlace (item) {
-  const card = new Cards('.template',item.link, item.place, handleCardClick);
+function addCard (item,callback) {
+  const card = new Card('.template',item.link, item.name, callback);
   const cardElement = card.generateCard();
-	listContainerElement.prepend(cardElement);
+  return cardElement
+}
+
+function handleAddPlace (item) {
+  const card = addCard (item,handleCardClick)
+  renderCard.addItem(card);
 }
 
 const popupWithFormProfile = new PopupWithForm(popupProfile, handleProfileSubmitForm);
@@ -60,7 +64,6 @@ popupWithFormProfile.setEventListeners();
 
 const userInfo = new UserInfo({nameProfileSelector:'.profile__name',informProfileSelector:'.profile__description'})
 
-userInfo.getUserInfo()
 
 function handleProfileSubmitForm (item) {
   userInfo.setUserInfo (item.profileName,item.profileDescription)

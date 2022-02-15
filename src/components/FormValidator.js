@@ -8,7 +8,7 @@ export default class FormValidator {
     this._form = form;
     this._inputList = this._form.querySelectorAll(this._inputSelector);
     this._submitButton = this._form.querySelector(this._submitButtonSelector);
-    this._allinputs = Array.from(this._inputList);
+    this._allInputs = Array.from(this._inputList);
   }
   _setInputListeners() { //ищем инпуты внутри формы и берем из них свойства
     this._inputList.forEach((input) => {
@@ -38,7 +38,7 @@ export default class FormValidator {
     input.classList.remove(this._inputErrorClass);
   };
   _hasInvalidInput = () => {
-    return this._allinputs.some((el) => {
+    return this._allInputs.some((el) => {
       return !el.validity.valid;
     });
 
