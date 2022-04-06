@@ -16,7 +16,9 @@
     </header>
     <main>
       <section class="profile">
+        <button type="button" class="profile__button-editing">
         <img src="<%=require('./images/zhak_kusto.png')%>" alt="изображение портфолио" class="profile__image">
+        <div class="profile__image-editing"></div></button>
           <div class="profile__name-editing">
             <h2 class="profile__name">Жак-Ив Кусто</h2>
             <button type="button" class="profile__editing"></button>
@@ -28,7 +30,7 @@
       </ul>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">&COPY; 2021 Mesto Russia</p>
+      <p class="footer__copyright">&COPY; 2022 Mesto Russia</p>
     </footer>
   </div>
   <div class="popup popup-profile">
@@ -59,6 +61,26 @@
       <button type="submit" class="popup__button popup__button_place">Создать</button>
     </form>
   </div>
+  <div class="popup popup-delete">
+    <div class="popup__overlay"></div>
+    <form class="popup__content-delete popup__form" name="form-place">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button type="button" class="popup__button popup__button_delete">Да</button>
+    </form>
+  </div>
+  <div class="popup popup-avatar">
+    <div class="popup__overlay"></div>
+    <form class="popup__content-avatar popup__form" name="form-place">
+      <button type="button" class="popup__close"></button>
+      <h2 class="popup__title">Обновить аватар</h2>
+      <fieldset class="popup__profile-info">
+        <input type="url" id="linkAvatar" placeholder="Ссылка на картинку" class="popup__text-form popup__text-form-avatar popup__text-form_linkAvatar linkAvatar" required>
+        <span id="linkAvatar-error" class="popup__error"></span>
+      </fieldset>
+      <button type="sbmit" class="popup__button popup__button_avatar">Сохранить</button>
+    </form>
+  </div>
   <div class="popup popup-image">
     <div class="popup__overlay"></div>
     <div class="popup__large-image">
@@ -72,8 +94,9 @@
       <img class="place__image">
       <div class="place__info">
         <h2 class="place__title"></h2>
-        <button type="button" class="place__like"></button>
-        <button type="button" class="place__delete"></button>
+        <div><button type="button" class="place__like"></button>
+        <h2 class="place__likes"></h2></div>
+        <button type="button" id="place__delete" class="place__delete place__delete_novisible"></button>
       </div>
     </li>
   </template>
