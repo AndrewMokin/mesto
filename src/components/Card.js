@@ -1,5 +1,5 @@
 export default class Card {
-  constructor (api,selector,data, handleCardClick, handleTrashClick) {
+  constructor (api,selector,data, handleCardClick, handleTrashClick, userId) {
     this._data = data
     this._selector = selector;
     this._link = data.link;
@@ -11,6 +11,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleTrashClick = handleTrashClick;
     this._api = api;
+    this._userId = userId;
   }
   _getTemplate() {
     const cardElement = document
@@ -42,18 +43,17 @@ export default class Card {
       this._api.putLike(this._data).then((res) => {
           this._likeButton.classList.add('place__like_active');
           this._element.querySelector('.place__likes').textContent = res.likes.length;
-      })
+      }).catch(err => console.log(err))
     } else {
       this._api.deleteLike(this._data).then((res) => {
           this._element.querySelector('.place__likes').textContent = res.likes.length;
           this._likeButton.classList.remove('place__like_active');
-        })
+        }).catch(err => console.log(err))
     }
   }
   _getLike() {
-    const _id = `91a6cfafb2cc6f78470b5569`;
     const findId = this._likes.some((element) => {
-        return element._id ===_id
+        return element._id ===this._userId
       })
        if (findId === true) {
         this._element.querySelector('.place__like').classList.add('place__like_active');
@@ -61,15 +61,21 @@ export default class Card {
       }
 
   _hideTrash() {
-    const _id = `91a6cfafb2cc6f78470b5569`;
-      if (this._idSelector ===_id) {
+    console.log(this._userId)
+      if (this._idSelector ===this._userId) {
         this._element.querySelector('.place__delete').classList.remove('place__delete_novisible')
       }
     }
 
   _setEventListeners() {
-    const _id = `91a6cfafb2cc6f78470b5569`;
-    this._element.querySelector('.place__delete').addEventListener('click', () => {this._handleTrashClick (this._api,this._data,this._element)});
+    this._element.querySelector('.place__delete').addEventListener('click', () => {
+    this._handleTrashClick (this._data,this._element)
+    });
+    // this._element.querySelector('.place__delete').addEventListener('click', (evt) => {
+    //   evt.preventDefault();
+    //   console.log('click')
+    //   this._popupWithSubmit.open()
+    // });
     this._likeButton.addEventListener('click', this._handleClickLike)
     this._element.querySelector('.place__image').addEventListener('click',
     () =>{

@@ -2,31 +2,17 @@ import {profile,enableValidation,profileButton,newPlaceButton,popupProfile,popup
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
-import Popup from '../components/Popup.js'
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithSubmit from '../components/PopupWithSubmit';
 import UserInfo from '../components/UserInfo.js';
 import './index.css';
 import Api from '../components/Api.js';
-
+let userId;
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/cohort-38',
   token: '5915b378-e30a-47e1-90fe-a5a0aac62f5e'
 })
-
-api.getCards()
-  .then(initialCards => {
-    renderCard.render(initialCards)
-  })
-  .catch(err => console.log(err))
-
-api.getUserInfo()
-  .then(data => {
-    profile.querySelector('.profile__name').textContent = data.name;
-    profile.querySelector('.profile__description').textContent = data.about;
-    profile.querySelector('.profile__image').src = data.avatar
-  })
-  .catch(err => console.log(err))
 
 const formProfileValidator = new FormValidator(enableValidation, popupProfile);
 const formPlaceValidator = new FormValidator(enableValidation, popupPlace);
@@ -39,6 +25,15 @@ formPlaceValidator.resetValidation();
 
 const popupWithImage = new PopupWithImage(popupImage)
 
+Promise.all([api.getCards(),api.getUserInfo()])
+  .then(([initialCards,data]) =>{
+    renderCard.render(initialCards)
+    userInfo.setUserInfo (data.name,data.about)
+    userInfo.setUserAvatar (data.avatar)
+    userId = data._id;
+    renderCard.render(initialCards)
+  }).catch(err => console.log(err))
+console.log(userId)
 
 popupWithImage.setEventListeners()
 
@@ -65,25 +60,16 @@ newPlaceButton.addEventListener('click', function(){
 popupWithFormPlace.setEventListeners()
 
 function addCard (item) {
-  const card = new Card(api,'.template',item, handleCardClick, handleTrashClick);
+  const card = new Card(api,'.template',item, handleCardClick, handleTrashClick,userId);
   const cardElement = card.generateCard();
   return cardElement
 }
 
-const popup = new Popup (popupDelete);
-popup.setEventListeners()
+const popupWithSubmit = new PopupWithSubmit(popupDelete,api);
 
-function handleTrashClick (api,data,element) {
-  popup.open();
-  document.querySelector('.popup__button_delete').addEventListener('click',
-    () =>{
-      api.deleteCard(data).then((res) => {
-        element.remove();
-        element = null;
-      })
-      popup.close();
-    }
-    );
+function handleTrashClick (data,element) {
+  popupWithSubmit.open()
+  popupWithSubmit.setEventListeners(data,element)
 }
 
 const popupWhithAvatar = new PopupWithForm (popupAvatar,handleAvatarClick);
@@ -92,21 +78,6 @@ document.querySelector('.profile__button-editing').addEventListener('click', fun
   popupWhithAvatar.open()
   formAvatarValidator.resetValidation()
 })
-function handleAvatarClick (item) {
-      const avatar = item.linkAvatar
-      api.changeAvatar(avatar).then((res) => {
-        profile.querySelector('.profile__image').src = avatar
-      })
-      .catch(err => console.log(err))
-      .finally(()=> {
-        popupWhithAvatar.loading(false)
-        popupWhithAvatar.close();
-      })
-
-    }
-popupWhithAvatar.setEventListeners();
-
-
 
 function handleAddPlace (item) {
 api.addCard (item)
@@ -134,8 +105,20 @@ profileButton.addEventListener('click', function(){
 
 popupWithFormProfile.setEventListeners();
 
-const userInfo = new UserInfo({nameProfileSelector:'.profile__name',informProfileSelector:'.profile__description'})
+const userInfo = new UserInfo({nameProfileSelector:'.profile__name',informProfileSelector:'.profile__description',avatarProfileSelector: '.profile__image'})
 
+function handleAvatarClick (item) {
+  const avatar = item.linkAvatar
+  api.changeAvatar(avatar).then((res) => {
+    userInfo.setUserAvatar (avatar)
+  })
+  .catch(err => console.log(err))
+  .finally(()=> {
+    popupWhithAvatar.loading(false)
+    popupWhithAvatar.close();
+  })
+}
+popupWhithAvatar.setEventListeners();
 
 function handleProfileSubmitForm (item) {
   api.newProfileInfo (item)
