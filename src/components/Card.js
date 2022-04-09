@@ -33,10 +33,7 @@ export default class Card {
     this._setEventListeners();
     return this._element;
   }
-  _handleDeletePlace = () => {
-    this._element.remove();
-    this._element = null;
-  }
+
   _handleClickLike = () => {
     this._activeLike = this._likeButton.classList.toggle('place__like_active');
     if (this._activeLike === true) {
@@ -61,7 +58,6 @@ export default class Card {
       }
 
   _hideTrash() {
-    console.log(this._userId)
       if (this._idSelector ===this._userId) {
         this._element.querySelector('.place__delete').classList.remove('place__delete_novisible')
       }
@@ -71,11 +67,6 @@ export default class Card {
     this._element.querySelector('.place__delete').addEventListener('click', () => {
     this._handleTrashClick (this._data,this._element)
     });
-    // this._element.querySelector('.place__delete').addEventListener('click', (evt) => {
-    //   evt.preventDefault();
-    //   console.log('click')
-    //   this._popupWithSubmit.open()
-    // });
     this._likeButton.addEventListener('click', this._handleClickLike)
     this._element.querySelector('.place__image').addEventListener('click',
     () =>{

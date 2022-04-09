@@ -5,22 +5,24 @@ export default class PopupWithSubmit extends Popup {
     this._api = api
   }
 
-  _deleteCard (data,element) {
-    this._api.deleteCard(data).then((res) => {
-      element.remove();
-      element = null;
+  _deleteCard () {
+    this._api.deleteCard(this._data).then((res) => {
+      this._element.remove();
+      this._element = null;
       super.close();
     })
   }
 
-  open() {
+  open(data,element) {
+    this._data = data
+    this._element = element
     super.open()
   }
 
   setEventListeners() {
     super.setEventListeners()
     document.querySelector('.popup__button_delete').addEventListener('click',() =>{
-      this._deleteCard(data,element)
+      this._deleteCard()
     })
   }
 }

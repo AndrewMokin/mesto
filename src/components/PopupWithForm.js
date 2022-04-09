@@ -26,11 +26,9 @@ export default class PopupWithForm extends Popup {
   loading(isLoading) {
     if (isLoading === true) {
       this._button.textContent='Сохранение...'
-      console.log('да')
     }
     else {
       this._button.textContent = 'Сохранить'
-      console.log('да')
     }
   }
 

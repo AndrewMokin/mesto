@@ -27,13 +27,11 @@ const popupWithImage = new PopupWithImage(popupImage)
 
 Promise.all([api.getCards(),api.getUserInfo()])
   .then(([initialCards,data]) =>{
-    renderCard.render(initialCards)
     userInfo.setUserInfo (data.name,data.about)
     userInfo.setUserAvatar (data.avatar)
     userId = data._id;
     renderCard.render(initialCards)
   }).catch(err => console.log(err))
-console.log(userId)
 
 popupWithImage.setEventListeners()
 
@@ -67,9 +65,10 @@ function addCard (item) {
 
 const popupWithSubmit = new PopupWithSubmit(popupDelete,api);
 
+popupWithSubmit.setEventListeners()
+
 function handleTrashClick (data,element) {
-  popupWithSubmit.open()
-  popupWithSubmit.setEventListeners(data,element)
+  popupWithSubmit.open(data,element)
 }
 
 const popupWhithAvatar = new PopupWithForm (popupAvatar,handleAvatarClick);
