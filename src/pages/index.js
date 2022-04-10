@@ -83,11 +83,11 @@ api.addCard (item)
   .then(res => {
     const card = addCard (res)
     renderCard.addItem(card);
+    popupWithFormPlace.close();
   })
   .catch(err => console.log(err))
   .finally(()=> {
     popupWithFormPlace.loading(false)
-    popupWithFormPlace.close();
   })
 }
 
@@ -110,11 +110,11 @@ function handleAvatarClick (item) {
   const avatar = item.linkAvatar
   api.changeAvatar(avatar).then((res) => {
     userInfo.setUserAvatar (avatar)
+    popupWhithAvatar.close();
   })
   .catch(err => console.log(err))
   .finally(()=> {
     popupWhithAvatar.loading(false)
-    popupWhithAvatar.close();
   })
 }
 popupWhithAvatar.setEventListeners();
@@ -123,11 +123,11 @@ function handleProfileSubmitForm (item) {
   api.newProfileInfo (item)
   .then(res => {
     userInfo.setUserInfo (item.profileName,item.profileDescription)
+    popupWithFormProfile.close();
   })
   .catch(err => console.log(err))
   .finally(()=> {
     popupWithFormProfile.loading(false)
-    popupWithFormProfile.close();
   })
 }
 
